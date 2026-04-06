@@ -11,8 +11,8 @@ A lightweight web app that analyzes messages and UPI payment behavior to detect 
 1. Overview
 2. Features
 3. Tech Stack
-4. Setup Instructions
-5. PPT
+4. PPT
+5. Setup Instructions
 
 ---
 
@@ -39,11 +39,11 @@ Unlike existing solutions, ScamGuard is **offline, lightweight, and pre-transact
 
 ---
 
+## PPT
+https://docs.google.com/presentation/d/1LKMV6lMvPOVk5UP5uqWA1MMA84-Eh1dqT1HQ3k2-jNE/edit?usp=sharing
 ## 🏗 Setup Instructions
 
 1. **Clone / download the repo**
 ```bash
 git clone <https://github.com/almaas-1786/Code_Wave>
 
-## PPT
-https://docs.google.com/presentation/d/1LKMV6lMvPOVk5UP5uqWA1MMA84-Eh1dqT1HQ3k2-jNE/edit?usp=sharing
