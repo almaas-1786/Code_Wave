@@ -1,5 +1,5 @@
 # ScamGuard 🚨
-
+Deployed app : https://attached-assets--almaastajm.replit.app
 **Pre-Transaction Scam Detection System**  
 A lightweight web app that analyzes messages and UPI payment behavior to detect potential scams **before money is sent**.
 
