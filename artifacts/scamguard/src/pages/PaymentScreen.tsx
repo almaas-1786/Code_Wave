@@ -77,7 +77,7 @@ export default function PaymentScreen({ showScreen, messageResult, setRiskResult
 
   const validate = () => {
     const newErrors: Record<string, string> = {};
-    if (!name.trim()) newErrors.name = "Recipient name is required";
+    if (!name.trim()) newErrors.recipient = "Recipient name is required";
     if (!upi.trim()) newErrors.upi = "UPI ID is required";
     if (!amount || Number(amount) <= 0) newErrors.amount = "Enter a valid amount";
     return newErrors;
@@ -134,6 +134,7 @@ export default function PaymentScreen({ showScreen, messageResult, setRiskResult
           value={value}
           onChange={(e) => { onChange(e.target.value); setErrors(prev => ({ ...prev, [label.toLowerCase().split(" ")[0]]: "" })); }}
           placeholder={placeholder}
+          maxLength={50}
           className={`w-full pl-10 pr-4 py-3 rounded-xl bg-slate-800/80 border text-slate-100 placeholder:text-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all ${error ? "border-red-500/60" : "border-slate-700"}`}
         />
       </div>
