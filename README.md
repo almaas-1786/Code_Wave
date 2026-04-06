@@ -8,11 +8,11 @@ A lightweight web app that analyzes messages and UPI payment behavior to detect 
 ---
 
 ## 📌 Table of Contents
-1. [Overview](#overview)  
-2. [Features](#features)  
-3. [Tech Stack](#tech-stack)  
-4. [Setup Instructions](#setup-instructions)   
-5. [PPT]
+1. Overview
+2. Features
+3. Tech Stack
+4. Setup Instructions
+5. PPT
 
 ---
 
