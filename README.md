@@ -44,3 +44,6 @@ Unlike existing solutions, ScamGuard is **offline, lightweight, and pre-transact
 1. **Clone / download the repo**
 ```bash
 git clone <https://github.com/almaas-1786/Code_Wave>
+
+## PPT
+https://docs.google.com/presentation/d/1LKMV6lMvPOVk5UP5uqWA1MMA84-Eh1dqT1HQ3k2-jNE/edit?usp=sharing
