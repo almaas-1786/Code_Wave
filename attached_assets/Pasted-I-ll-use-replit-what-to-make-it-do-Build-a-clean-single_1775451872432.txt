@@ -1,0 +1,273 @@
+I'll use replit, what to make it do. Build a clean single-page web app using HTML, CSS, and JavaScript.
+
+App name: ScamGuard
+🚀 PROJECT ON REPLIT
+ScamGuard: Message + UPI Risk Analyzer
+🧱 1. CREATE PROJECT (10 mins)
+
+👉 Go to Replit → Create Repl → HTML/CSS/JS
+
+You’ll have:
+
+index.html
+style.css
+script.js
+🧠 2. APP STRUCTURE (VERY IMPORTANT)
+
+You are building a single-page app (SPA)
+👉 No routing, just hide/show sections
+
+🖥️ SCREENS YOU NEED
+1. Home Screen
+Title: ScamGuard
+Buttons:
+Analyze Message
+Simulate Payment
+2. Message Screen
+Textarea
+Analyze button
+3. Payment Screen
+Recipient name
+UPI ID
+Amount
+Note
+Proceed button
+4. Result Screen (COMMON)
+Risk score
+Signals
+Explanation
+Advice
+🧾 3. HTML (COPY STRUCTURE)
+
+Paste this in index.html:
+
+<body>
+
+<div id="home">
+  <h1>ScamGuard</h1>
+  <button onclick="showScreen('message')">Analyze Message</button>
+  <button onclick="showScreen('payment')">Simulate Payment</button>
+</div>
+
+<div id="message" class="hidden">
+  <h2>Message Analysis</h2>
+  <textarea id="msgInput"></textarea>
+  <button onclick="handleMessage()">Analyze</button>
+</div>
+
+<div id="payment" class="hidden">
+  <h2>Payment Simulation</h2>
+  <input id="name" placeholder="Recipient Name">
+  <input id="upi" placeholder="UPI ID">
+  <input id="amount" type="number" placeholder="Amount">
+  <input id="note" placeholder="Note">
+  <button onclick="handlePayment()">Proceed</button>
+</div>
+
+<div id="result" class="hidden">
+  <h2 id="riskLevel"></h2>
+  <p id="score"></p>
+  <p id="signals"></p>
+  <p id="explanation"></p>
+</div>
+
+</body>
+🎨 4. CSS (KEEP IT CLEAN)
+body {
+  font-family: Arial;
+  text-align: center;
+  padding: 20px;
+}
+
+.hidden {
+  display: none;
+}
+
+button {
+  padding: 10px 20px;
+  margin: 10px;
+  cursor: pointer;
+}
+⚙️ 5. NAVIGATION LOGIC
+
+In script.js:
+
+function showScreen(screen) {
+  document.getElementById("home").classList.add("hidden");
+  document.getElementById("message").classList.add("hidden");
+  document.getElementById("payment").classList.add("hidden");
+  document.getElementById("result").classList.add("hidden");
+
+  document.getElementById(screen).classList.remove("hidden");
+}
+🧠 6. MESSAGE ANALYZER
+const urgencyWords = ["urgent", "immediately", "now"];
+const emotionWords = ["help", "please", "trust"];
+const authorityWords = ["bank", "account", "kyc"];
+
+function analyzeMessage(text) {
+  let score = 0;
+  let signals = [];
+
+  let lower = text.toLowerCase();
+
+  urgencyWords.forEach(w => {
+    if (lower.includes(w)) {
+      score += 20;
+      signals.push("Urgency");
+    }
+  });
+
+  emotionWords.forEach(w => {
+    if (lower.includes(w)) {
+      score += 15;
+      signals.push("Emotional Pressure");
+    }
+  });
+
+  authorityWords.forEach(w => {
+    if (lower.includes(w)) {
+      score += 20;
+      signals.push("Authority");
+    }
+  });
+
+  return { score, signals };
+}
+💬 HANDLE MESSAGE BUTTON
+let lastMessageResult = { score: 0, signals: [] };
+
+function handleMessage() {
+  let text = document.getElementById("msgInput").value;
+  lastMessageResult = analyzeMessage(text);
+  alert("Message analyzed! Now simulate payment.");
+  showScreen("payment");
+}
+💸 7. PAYMENT ANALYSIS
+let knownRecipients = ["mom@upi", "friend@upi"];
+
+function analyzePayment(data) {
+  let score = 0;
+  let signals = [];
+
+  if (data.amount > 5000) {
+    score += 30;
+    signals.push("High Amount");
+  }
+
+  if (!knownRecipients.includes(data.upi)) {
+    score += 25;
+    signals.push("New Recipient");
+  }
+
+  if (data.note.toLowerCase().includes("urgent")) {
+    score += 20;
+    signals.push("Urgent Request");
+  }
+
+  return { score, signals };
+}
+🔗 COMBINE BOTH
+function getFinalRisk(msg, pay) {
+  let total = msg.score + pay.score;
+  let signals = [...msg.signals, ...pay.signals];
+
+  let level = "Low";
+  if (total > 80) level = "High";
+  else if (total > 50) level = "Medium";
+
+  return { total, signals, level };
+}
+💬 HANDLE PAYMENT BUTTON
+function handlePayment() {
+  let data = {
+    name: document.getElementById("name").value,
+    upi: document.getElementById("upi").value,
+    amount: parseInt(document.getElementById("amount").value),
+    note: document.getElementById("note").value
+  };
+
+  let paymentResult = analyzePayment(data);
+  let final = getFinalRisk(lastMessageResult, paymentResult);
+
+  showResult(final);
+}
+📊 RESULT DISPLAY
+function showResult(res) {
+  showScreen("result");
+
+  document.getElementById("riskLevel").innerText = "Risk: " + res.level;
+  document.getElementById("score").innerText = "Score: " + res.total;
+  document.getElementById("signals").innerText = "Signals: " + res.signals.join(", ");
+
+  document.getElementById("explanation").innerText =
+    "This transaction shows patterns commonly associated with scams.";
+}
+🔥 8. ADD SMART FEATURE (IMPORTANT)
+
+Add before final result:
+
+let trust = confirm("Do you trust this request?");
+
+if (trust) final.total -= 20;
+else final.total += 10;
+🎯 FINAL APP FLOW
+Click “Analyze Message”
+Paste scam message
+Go to payment
+Enter details
+Click proceed
+See risk
+🎤 DEMO SCRIPT (USE THIS)
+
+“User receives an urgent message, proceeds to pay, and our system detects psychological pressure and unusual transaction patterns before money is sent.”
+
+Color risk:
+red = high
+yellow = medium
+green = low
+Add icons (⚠️) 
+Build a complete single-page web app using HTML, CSS, and JavaScript.
+
+App name: ScamGuard
+
+Features:
+1. Home screen with 2 buttons:
+   - Analyze Message
+   - Simulate Payment
+
+2. Message screen:
+   - textarea input
+   - Analyze button
+
+3. Payment screen:
+   - Recipient Name input
+   - UPI ID input
+   - Amount input
+   - Note input
+   - Proceed button
+
+4. Result screen:
+   - Risk Level (Low/Medium/High)
+   - Score
+   - Signals detected
+   - Explanation
+
+Logic:
+- Message analysis:
+  detect urgency, emotional pressure, authority keywords
+
+- Payment analysis:
+  high amount (>5000)
+  new recipient (hardcoded list)
+  urgent note
+
+- Combine both into final risk score
+
+- Show results dynamically
+
+Requirements:
+- Clean UI
+- Simple navigation (hide/show sections)
+- All code in one file
+- Beginner-friendly and well-structured

@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "ScamGuard"
+version = "1.0.0"
+id = "artifacts/scamguard"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 19198
+
+[services.development]
+run = "pnpm --filter @workspace/scamguard run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/scamguard", "run", "build" ]
+publicDir = "artifacts/scamguard/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "19198"
+BASE_PATH = "/"
